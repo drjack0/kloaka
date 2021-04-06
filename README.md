@@ -1,5 +1,5 @@
 # Kloaka
-Kloaka - Group Project for the IoT 2021 Course 
+Kloaka - Group Project for the IoT 2021 Course @ Sapienza University of Rome.
 
 ## Members
 * [Giacomo Priamo](https://www.linkedin.com/in/giacomo-p-b573b020b/)
