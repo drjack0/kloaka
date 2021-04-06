@@ -10,6 +10,8 @@ We introduce Kloaka: an automated system to probe the quality of sewage waters a
 
 Kloaka's aim is to enhance the quality of the maritime waters by providing the means to control the quality of storm sewage flowing into the seas.
 
+As a natural consequence, those maritime cities employing the system we propose will be able to gain a lot of benefits coming from the capability to boast about having higher quality sea waters, such as attracting more tourists.
+
 ## Personas 
 
 We identified the 3 following personas who would benefit from our solution:
