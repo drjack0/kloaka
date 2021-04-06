@@ -1,6 +1,6 @@
 # Concept
 
-## The Problem and our Solution
+## The Problem and our Proposed Solution
 
 We believe that there is a tight relationship between the quality of marine waters and that of those waters that flow into seas, such as sewage waters.
 
