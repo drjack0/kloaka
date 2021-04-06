@@ -6,9 +6,9 @@ We believe that there is a tight relationship between the quality of marine wate
 
 In order to improve the sea conditions from several points of view (aquaculture and coastal tourism for example), it is necessary to monitor the factors that influence them, namely the quality of sewage waters, which flow almost directly into the seas.
 
-We thus introduce Kloaka: an automated system to probe the quality of sewage waters and to detect the potential presence of physical obstructions in the pipes. 
+We introduce Kloaka: an automated system to probe the quality of sewage waters and to detect the potential presence of physical obstructions in the pipes. Our focus is the so-called "storm sewage", that is water that originates from precipitations such as rain, snow and ice melt. Storm sewage is usually poorly checked and oftentimes it does not even undergo any kind of purification treatment, therefore it directly flows into the sea.
 
-Kloaka's aim is to enhance the quality of the urban wastewaters flowing into the seas.
+Kloaka's aim is to enhance the quality of the maritime waters by providing the means to control the quality of storm sewage flowing into the seas.
 
 ## Personas 
 
