@@ -51,6 +51,6 @@ The wastewater flow data from adiacent devices is then processed to determine th
 Furthermore using meteorological data we can extimate futures flows based on precipitation to schedule maintainance.
 
 ### Dashboard
-To monitor the status of the sewer and let the operators act there will be a dashboard providing infos on the detetced flows and amount of pollutants on the sewer map, it will let the operator clearly visualize the detected malfuncioning sewer sections in the map providing their location and specifyng the problem.
+To monitor the status of the sewer and let the operators act there will be a dashboard providing infos on the detetced flows and amount of pollutants on the sewer map, it will let the operator clearly visualize the detected malfuncioning sewer sections in the map via a Geographic Information Systems (GIS) providing their location and specifyng the problem.
 Furthermore data from the environmental sensing could then be provided as open data.
 
