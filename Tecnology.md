@@ -35,17 +35,17 @@ It lights up when the system detects an anomaly in the tubing that will be furth
 ## Network overview
 
 ### LoRaWAN
-As the newtork will be sparse we chose LoRa as the transmitting medium for the device as it's capable of long range transmission, low energy coonsuption and a discrete resistence to interference.
+As the newtork will be sparse we chose LoRa as the transmitting medium for the device as it's capable of long range transmission, low energy consuption and a discrete resistance to interference.
 
 ### Device and antenna positioning
-As the transmission obstruction underground could be significant a multi-hop solution like [this](https://www.mdpi.com/1424-8220/19/2/402) will be cool but infeasible for this project so we decided to place the device not too far from manholes and place the antenna outside the sewer underground infrastructure.
+As the transmission obstruction underground could be significant, a multi-hop solution like [this](https://www.mdpi.com/1424-8220/19/2/402) would be cool but infeasible for this project so we decided to place the device not too far from manholes and place the antenna outside the sewer underground infrastructure.
 
 ### Messagge passing
 As LoRaWAN and The Thinghs of Network seems to have a good integration with AWS services [as stated here](https://aws.amazon.com/it/blogs/iot/connect-your-devices-to-aws-iot-using-lorawan/) we will proceed like this, probably straight forward.
 
 ## Think, show and act
 ### Data processing
-Data from the onboard environmental sensors and external data of city air pollution and marine pollution are aggregated to determine the efficiency of the purification process of wastewater, know if there is some "illegal addition of wastewater" and determine the impact of city pollution over marine pollution.
+Data from the onboard environmental sensors and external data of city air pollution and marine pollution are aggregated to determine the efficiency of the purification process of wastewater, to know if there is some "illegal addition of wastewater" and to determine the impact of city pollution over marine pollution.
 
 The wastewater flow data from adiacent devices is then processed to determine the direction and the intensity of the flow in a given section of the sewer with which we can determine if at some point there is a blockage determined by garbage or leaks in the tubing looking for differences in flows beween the two adiacent devices.
 Furthermore using meteorological data we can extimate futures flows based on precipitation to schedule maintainance.
