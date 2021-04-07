@@ -29,7 +29,7 @@ So we reused the concept and camed up with a bigger 3d printed paddle wheel with
 ## Actuators
 
 ### A LED indicator
-To reduce energy consuption and to increse the lifespan of the device the only actuator we choose to use in the device is a simple led to let the human operator precisely locate the fault site.
+To reduce energy consuption and to increase the lifespan of the device the only actuator we choose to use in the device is a simple led to let the human operator precisely locate the fault site.
 It lights up when the system detects an anomaly in the tubing that will be further solved from the operator.
 
 ## Network overview
