@@ -1,7 +1,7 @@
 # Evaluation
 This document provides informations about the "evaluation" branch of the project
 
-## Constrains
+## Constraints
 The devices work in very particular and limit conditions, like thick walls, absence of electrical sources and difficulties in comunicating cause in the underground, but they don't need a large bandwidth and no *real time* data are required
 
 ## Performance evaluation
