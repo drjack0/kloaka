@@ -11,6 +11,6 @@ A sewer monitoring system whose objective is to monitor the quality of sewage wa
 
 ## Documents
 * [Concept](Concept.md)
-* [Tecnology](Technology.md)
+* [Technology](Technology.md)
 * [Evaluation](Evaluation.md)
 
