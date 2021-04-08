@@ -1,5 +1,5 @@
-# Tecnology
-This document provides tecnical details about kloaka.
+# Tehcnology
+This document provides technical details about kloaka.
 ## Sensors and data
 Of course there are many metrics of interest to evaluate sewer water condition.
 Based on the goal of the device we chose the following.
