@@ -17,6 +17,7 @@ In general, some of the criteria we focused on are:
 * User management (roles, data access)
 
 ### Device management
+![alt text](Images/evaluation/battery_management.png)
 For each device, it is essential to have certain monitored characteristics:
 * **Power consumption:** Must be reduced as possible due to the boundary conditions in which devices work, where is impossible to have an external elettrical support. It is advisable to monitor the state of the battery in order to have possibility of physical maintance to prevent issues. This can be done appropriately calculating sensing and sending times: fewer detections possible, fewer deliveries possible, lower will be the consumption
 * **Measurement speed:** Take into account the measurement times of the various sensors and board's clock speed to calculate the correct "sensing" time, especially if some measurements are "event driven". 
@@ -58,6 +59,8 @@ More infos [here](https://avbentem.github.io/airtime-calculator/ttn/eu868/51)
 All data must be able to be monitored constantly but we don't need any type of *real time* solutions. Noise detection algorithms need to be considered also at the cloud analysis level, in order to have the best possible measurements.
 
 Communication, through the *TTN Network*, allows us to have a good amount of data, but, to avoid useless write accesses to database, we have to process these data in advance.
+
+![alt text](Images/evaluation/aws_cloudwatch.png)
 
 ### User management
 Also the user, for his part, requires evaluation parameters. Each user who accesses the system must have a specific role within it, based on the appropriate use. Roles not properly calculated can lead to unwanted accesses and, consequently, to security holes.
