@@ -1,5 +1,8 @@
 # Technology
 This document provides technical details about kloaka.
+## \[20/05/2021] V2: Group Project MVP Presentation
+
+## \[08/04/2021] V1: Initial Ideas Pitch
 ## Sensors and data
 Of course there are many metrics of interest to evaluate sewer water condition.
 Based on the goal of the device we chose the following.

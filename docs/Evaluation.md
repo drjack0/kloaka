@@ -1,6 +1,9 @@
 # Evaluation
-This document provides informations about the "evaluation" branch of the project
+This document provides information about the "evaluation" branch of the project
 
+## \[20/05/2021] V2: Group Project MVP Presentation
+
+## \[08/04/2021] V1: Initial ideas pitch
 ## Constraints
 The devices work in very particular and limit conditions, like thick walls, absence of electrical sources and difficulties in comunicating cause in the underground, but they don't need a large bandwidth and no *real time* data are required
 

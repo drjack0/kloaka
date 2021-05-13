@@ -1,5 +1,8 @@
 # Concept
 This document introduces Kloaka.
+## \[20/05/2021] V2: Group Project MVP Presentation
+
+## \[08/04/2021] V1: Initial Ideas Pitch
 ## The Problem and our Proposed Solution
 
 We believe that there is a tight relationship between the quality of marine waters and that of those waters that flow into seas, such as sewage waters.
