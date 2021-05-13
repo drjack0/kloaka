@@ -1,1 +1,5 @@
 .DS_Store
+
+#Ignored files in aws directory
+/aws/node_modules/*
+/aws/.serverless/*
