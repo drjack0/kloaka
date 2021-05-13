@@ -10,9 +10,9 @@ Kloaka - Group Project for the IoT 2021 Course @ Sapienza University of Rome.
 A sewer monitoring system whose objective is to monitor the quality of sewage water  in relation to urban pollution and check for the presence of potential physical obstructions in the pipes due to street garbage. 
 
 ## Documents
-* [Concept](Concept.md)
-* [Technology](Technology.md)
-* [Evaluation](Evaluation.md)
+* [Concept](./docs/Concept.md)
+* [Technology](./docs/Technology.md)
+* [Evaluation](./docs/Evaluation.md)
 
 ## Videos 
 * [Presentation](https://youtu.be/SEe99dUtCmw)
