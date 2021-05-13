@@ -1,0 +1,117 @@
+service: backend-kloaka
+
+frameworkVersion: '2'
+
+package:
+  individually: true
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  lambdaHashingVersion: 20201221
+
+  environment:
+    TableA: Kloaka-Zone-A
+    TableB: Kloaka-Zone-B
+    TableC: Kloaka-Zone-C
+
+  iam:
+    role:
+      statements:
+        - Effect: "Allow"
+          Action:
+            - dynamodb:*
+          Resource: "arn:aws:dynamodb:us-east-1:815814454771:table/*"
+#        - Effect: Allow
+#          Action:
+#            - dynamodb:DescribeTable
+#            - dynamodb:Query
+#            - dynamodb:Scan
+#            - dynamodb:GetItem
+#            - dynamodb:PutItem
+#            - dynamodb:UpdateItem
+#            - dynamodb:DeleteItem
+#          Resource: "arn:aws:dynamodb:us-east-1:815814454771:table/*"
+#        - Effect: Allow
+#          Action:
+#            - "execute-api:ManageConnections"
+#            - "execute-api:Invoke"
+#          Resource:
+#            - "arn:aws:execute-api:*:*:*"
+#        - Effect: Allow
+#          Action:
+#            - "iot:Publish"
+#          Resource:
+#            - "arn:aws:iot:us-east-1:815814454771:*"
+
+functions:
+  organizer:
+    handler: src/organizer.handler
+    events:
+      - iot:
+          name: "kloaka_organizer"
+          description: "KLOAKA - Message organizer and formatter. This rule gets messages posted on 'from_device' topic and put them in the relative zone DynamoDB Table"
+          sql: "SELECT * FROM 'kloaka_from_device'"
+  getDeviceStat:
+    handler: src/rest.getDeviceStat
+    events:
+      - httpApi:
+          path: /device/{id}
+          method: get
+          cors: true
+  getAllDevices:
+    handler: src/rest.getAllDevices
+    events:
+      - httpApi:
+          path: /device/scan
+          method: get
+          cors: true
+  
+#  triggerA:
+#    handler: src/triggers.triggerA
+#    events:
+#      - stream: arn:aws:dynamodb:us-east-1:815814454771:table/Kloaka-Zone-A/stream/2021-05-12T22:44:18.127
+#  triggerB:
+#    handler: src/triggers.triggerB
+#    events:
+#      - stream: arn:aws:dynamodb:us-east-1:815814454771:table/Kloaka-Zone-B/stream/2021-05-12T22:44:24.928
+#  triggerC:
+#    handler: src/triggers.triggerC
+#    events:
+#      - stream: arn:aws:dynamodb:us-east-1:815814454771:table/Kloaka-Zone-C/stream/2021-05-12T22:44:30.045
+
+#    The following are a few example events you can configure
+#    NOTE: Please make sure to change your handler code to work with those events
+#    Check the event documentation for details
+#    events:
+#      - httpApi:
+#          path: /users/create
+#          method: get
+#      - websocket: $connect
+#      - s3: ${env:BUCKET}
+#      - schedule: rate(10 minutes)
+#      - sns: greeter-topic
+#      - stream: arn:aws:dynamodb:region:XXXXXX:table/foo/stream/1970-01-01T00:00:00.000
+#      - alexaSkill: amzn1.ask.skill.xx-xx-xx-xx
+#      - alexaSmartHome: amzn1.ask.skill.xx-xx-xx-xx
+#      - iot:
+#          sql: "SELECT * FROM 'some_topic'"
+#      - cloudwatchEvent:
+#          event:
+#            source:
+#              - "aws.ec2"
+#            detail-type:
+#              - "EC2 Instance State-change Notification"
+#            detail:
+#              state:
+#                - pending
+#      - cloudwatchLog: '/aws/lambda/hello'
+#      - cognitoUserPool:
+#          pool: MyUserPool
+#          trigger: PreSignUp
+#      - alb:
+#          listenerArn: arn:aws:elasticloadbalancing:us-east-1:XXXXXX:listener/app/my-load-balancer/50dc6c495c0c9188/
+#          priority: 1
+#          conditions:
+#            host: example.com
+#            path: /hello
