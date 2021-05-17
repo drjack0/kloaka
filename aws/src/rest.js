@@ -66,3 +66,41 @@ module.exports.getAllDevices = async function(event, context){
     }
 
 }
+
+module.exports.getProblem = async function(event,context){
+    console.log(event);
+    const params = {
+        TableName: process.env.ProblemTable,
+        Key: {
+            problem_id: event.pathParameters.problem_id
+        }
+    };
+    console.log(params);
+
+    try{
+        const result = await call("get", params);
+        console.log(result);
+        return success(result);
+    } catch(err) {
+        console.log(err);
+        return failure({status: false});
+    }
+}
+
+module.exports.getAllProblems = async function(event, context){
+    console.log(event);
+    const params = {
+        TableName: process.env.ProblemTable
+    }
+
+    console.log(params);
+
+    try{
+        const result = await call("scan", params);
+        console.log(result);
+        return success(result);
+    } catch(err) {
+        console.log(err);
+        return failure({status: false});
+    }
+}

@@ -3,3 +3,5 @@
 #Ignored files in aws directory
 /aws/node_modules/*
 /aws/.serverless/*
+/aws/mqtt_tester/node_modules/*
+/aws/mqtt_tester/certs/*

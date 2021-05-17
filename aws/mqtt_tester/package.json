@@ -1,0 +1,16 @@
+{
+  "name": "mqtt_tester",
+  "version": "1.0.0",
+  "description": "mqtt_tester for Kloaka AWS Backend",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "author": "Matteo Giaccone",
+  "license": "ISC",
+  "dependencies": {
+    "aws-iot-device-sdk": "^2.2.6",
+    "mqtt": "^2.18.8"
+  }
+}

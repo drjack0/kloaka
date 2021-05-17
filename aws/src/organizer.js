@@ -52,10 +52,11 @@ exports.handler = function(event, context, callback) {
         Key: {
             id: event.id
         },
-        UpdateExpression: "ADD measurements :mes SET last_update = :last_update",
+        UpdateExpression: "ADD measurements :mes SET last_value = :last_value, last_update = :last_update",
         ExpressionAttributeValues: {
             ":mes": dynamo.createSet([JSON.stringify(mes_data)]),
-            ":last_update": time
+            ":last_update": time,
+            ":last_value": mes_data.filling
         }
     }
 

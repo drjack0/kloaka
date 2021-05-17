@@ -7,13 +7,17 @@ package:
 
 provider:
   name: aws
-  runtime: nodejs12.x
+  runtime: nodejs14.x
   lambdaHashingVersion: 20201221
+  websocketsApiRouteSelectionExpression: $request.body.action
+
 
   environment:
     TableA: Kloaka-Zone-A
     TableB: Kloaka-Zone-B
     TableC: Kloaka-Zone-C
+    ProblemTable: Kloaka-Problem
+    WebsocketManager: Kloaka-WebsocketManager
 
   iam:
     role:
@@ -22,22 +26,12 @@ provider:
           Action:
             - dynamodb:*
           Resource: "arn:aws:dynamodb:us-east-1:815814454771:table/*"
-#        - Effect: Allow
-#          Action:
-#            - dynamodb:DescribeTable
-#            - dynamodb:Query
-#            - dynamodb:Scan
-#            - dynamodb:GetItem
-#            - dynamodb:PutItem
-#            - dynamodb:UpdateItem
-#            - dynamodb:DeleteItem
-#          Resource: "arn:aws:dynamodb:us-east-1:815814454771:table/*"
-#        - Effect: Allow
-#          Action:
-#            - "execute-api:ManageConnections"
-#            - "execute-api:Invoke"
-#          Resource:
-#            - "arn:aws:execute-api:*:*:*"
+        - Effect: Allow
+          Action:
+            - "execute-api:ManageConnections"
+            - "execute-api:Invoke"
+          Resource:
+            - "arn:aws:execute-api:*:*:*"
 #        - Effect: Allow
 #          Action:
 #            - "iot:Publish"
@@ -52,6 +46,7 @@ functions:
           name: "kloaka_organizer"
           description: "KLOAKA - Message organizer and formatter. This rule gets messages posted on 'from_device' topic and put them in the relative zone DynamoDB Table"
           sql: "SELECT * FROM 'kloaka_from_device'"
+
   getDeviceStat:
     handler: src/rest.getDeviceStat
     events:
@@ -59,6 +54,7 @@ functions:
           path: /device/{id}
           method: get
           cors: true
+
   getAllDevices:
     handler: src/rest.getAllDevices
     events:
@@ -66,19 +62,41 @@ functions:
           path: /device/scan
           method: get
           cors: true
+
+  getProblem:
+    handler: src/rest.getProblem
+    events:
+      - httpApi:
+          path: /problem/{problem_id}
+          method: get
+          cors: true
+          
+  getAllProblems:
+    handler: src/rest.getAllProblems
+    events:
+      - httpApi:
+          path: /problem/scan
+          method: get
+          cors: true
+
+  triggerComparator:
+    handler: src/problem.trigger
+    events:
+      - stream: arn:aws:dynamodb:us-east-1:815814454771:table/Kloaka-Zone-A/stream/2021-05-17T09:20:04.167
   
-#  triggerA:
-#    handler: src/triggers.triggerA
-#    events:
-#      - stream: arn:aws:dynamodb:us-east-1:815814454771:table/Kloaka-Zone-A/stream/2021-05-12T22:44:18.127
-#  triggerB:
-#    handler: src/triggers.triggerB
-#    events:
-#      - stream: arn:aws:dynamodb:us-east-1:815814454771:table/Kloaka-Zone-B/stream/2021-05-12T22:44:24.928
-#  triggerC:
-#    handler: src/triggers.triggerC
-#    events:
-#      - stream: arn:aws:dynamodb:us-east-1:815814454771:table/Kloaka-Zone-C/stream/2021-05-12T22:44:30.045
+  connect:
+    handler: src/websocket.connect
+    events:
+      - websocket:
+          route: $connect
+          cors: true
+
+  disconnect:
+    handler: src/websocket.disconnect
+    events:
+      - websocket:
+          route: $disconnect
+          cors: true
 
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events
