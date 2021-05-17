@@ -1,6 +1,6 @@
 # Kloaka - AWS Backend
 
-Backend section of Kloaka.
+AWS - Backend section of Kloaka.
 
 All the `GET` endpoints are exposed publicly.
 We have two type of API Gateway endpoints:
