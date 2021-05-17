@@ -15,7 +15,7 @@ With [Serverless Framework](https://www.serverless.com), integrating AWS CLI, ya
 Serverless Framework's aim is to easy create a CloudFormation Template, upload it on AWS and deploy all functionalities producted.
 
 ![serverless-logo](../Images/tecnology/aws/serverless_framework_logo.png)
-## Data from Devices - Lambda Organizer
+### Data from Devices - Lambda Organizer
 First step of the Kloaka machine is to have devices data on the cloud. Every device, through [TTN & AWS IoT Core integration](https://www.thethingsnetwork.org/docs/applications/aws/), can publish on IoT Mqtt Broker. Everytime a message is posted, an IoT Rule is called 
 ```sql
 SELECT * FROM 'kloaka_from_device'
@@ -63,7 +63,7 @@ Where:
 
 If a device publishes on the AWS Cloud for the first time, then it is registered on the DynamoDB Table. On the next publication, the fields are updated and the last measurement added to the array.
 
-## DynamoDB Streams & Triggers
+### DynamoDB Streams & Triggers
 
 Devices are registered in a DynamoDB Table and updated everytime comes a measure. For estimate if a problem exists between two sensors, at the moment, we made a little assumption with the `filling` level
 
@@ -113,6 +113,29 @@ Example: id1 = 01, id2 = 02 -> problem_id = 0102.
 }
 ```
 
-## Rest & WebSocket API
+### Rest & WebSocket API
 ![api-endpoints](../Images/tecnology/aws/API.png)
 
+All the `GET` endpoints are exposed publicly.
+We have two type of API Gateway endpoints:
+* API REST
+  * `/device/{id}` -> Return informations about a single device
+  * `/device/scan` -> Return informations about all devices
+  * `/problem/{id}` -> Return informations about a single problem
+  * `/problem/scan` -> Return informations about all problems
+* WEBSOCKET API
+  * `$connect` -> Connect to WebSocket API
+  * `$disconnect`-> Disconnect from WebSocket API
+
+At the moment there aren't `POST`, `REMOVE` or `PUT` endpoints, so there is no type of protection on the API endpoints
+
+### DashBoard
+
+WORK IN PROGRESS
+
+## Future Plans
+- Implement the "Zone" mechanism with Lambdas and Dynamo Tables
+  - Latitude and Longitude ranges
+- Send messages to devices through API
+  - "Cognito" authorization
+- Power Management, analysis on the cloud
