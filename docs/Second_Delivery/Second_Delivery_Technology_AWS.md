@@ -73,6 +73,8 @@ Devices are registered in a DynamoDB Table and updated everytime comes a measure
 | 50               | Low Flow     |
 | 0                | No Flow      |
 
+![api-endpoints](../Images/tecnology/aws/dynamodb-streams.png)
+
 When a sensor's value is updated in DB, a Lambda function is triggered through the DynamoDB Stream functionalities. This Lambda checks the following sensor's filling value and compare this one with the current sensor's value
 
 | Current Sensor | Following Sensor | Return Value |
@@ -114,7 +116,7 @@ Example: id1 = 01, id2 = 02 -> problem_id = 0102.
 ```
 
 ### Rest & WebSocket API
-![api-endpoints](../Images/tecnology/aws/API.png)
+![api-endpoints](../Images/tecnology/aws/api-gateway-diagram-general.svg)
 
 All the `GET` endpoints are exposed publicly.
 We have two type of API Gateway endpoints:
@@ -128,6 +130,8 @@ We have two type of API Gateway endpoints:
   * `$disconnect`-> Disconnect from WebSocket API
 
 At the moment there aren't `POST`, `REMOVE` or `PUT` endpoints, so there is no type of protection on the API endpoints
+
+![api-endpoints](../Images/tecnology/aws/API.png)
 
 - WEBSOCKET ENDPOINT: `wss://0o7o4txyea.execute-api.us-east-1.amazonaws.com/dev
 `
