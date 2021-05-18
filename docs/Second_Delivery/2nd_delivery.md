@@ -12,13 +12,13 @@ We were also suggested that we might try to do that in a non-invasive way (we pl
 Another comment regarded the fact that employing ph-meters and water turbidity sensors would make no sense in wastewaters.
 
 ## Changes to the concept 
-We gladly accepted the received comments and decided to focus only on the aforementioned issue adopting ultre-sonic sensors placed on top of the pipes to achieve our goal, as this technique particularly caught our interest. 
+We gladly accepted the received comments and decided to focus only on the aforementioned issue adopting ultrasonic sensors placed on top of the pipes to achieve our goal, as this technique particularly caught our interest. 
 
 Therefore we planned to set-up our proof of concept accordingly: we decided to place ultrasonic sensors on top of a metal pipe and try to  infer information about the flow from there. We found out that a similar technique is already adopted in industrial settings: an example can be found [here](https://www.youtube.com/watch?v=BBwSUUlSL5o).
 
 ## Technical work done since the 1st delivery
 ### The proof of concept
-The work on the proof of concept took us a lot of time to get a functioning prototype, we made several attempts with different kinds of pipes (PVC, rubber, metal) and different placements of the ultra-sonic sensors. We tried several configurations and during the first tries we did not get any reasonable readings from the sensors. 
+The work on the proof of concept took us a lot of time to get a functioning prototype, we made several attempts with different kinds of pipes (PVC, rubber, metal) and different placements of the ultrasonic sensors. We tried several configurations and during the first tries we did not get any reasonable readings from the sensors. 
 
 We concluded that, in order for the proof of concept to work, we needed to use a **metal** pipe, with a small section to have it completely filled with  water and thus recognize a regular flow using the sensors.   
 The picture below shows an example of our configuration
