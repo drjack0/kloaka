@@ -180,15 +180,15 @@ int setup_mqtt(void)
     unsigned flags = EMCUTE_QOS_0;
     subscriptions[0].cb = on_pub;
 
-    subscriptions[0].topic.name = MQTT_TOPIC;
+    subscriptions[0].topic.name = MQTT_TOPIC_IN;
 
 
     if (emcute_sub(&subscriptions[0], flags) != EMCUTE_OK) {
-        printf("error: unable to subscribe to %s\n", MQTT_TOPIC);
+        printf("error: unable to subscribe to %s\n", MQTT_TOPIC_IN);
         return 1;
     }
 
-    printf("Now subscribed to %s\n", MQTT_TOPIC);
+    printf("Now subscribed to %s\n", MQTT_TOPIC_IN);
     
     return 0;
 }
@@ -306,7 +306,7 @@ void send(int val){
     printf("VALUE: %d\n",val);
     char str[50];
     sprintf(str,"{\"id\":\"%s\",\"filling\":\"%d\"}",EMCUTE_ID,val);
-    pub(MQTT_TOPIC,str,0);
+    pub(MQTT_TOPIC_OUT,str,0);
 }
 
 int agg_flows(int *flows){

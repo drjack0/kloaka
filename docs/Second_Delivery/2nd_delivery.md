@@ -32,9 +32,11 @@ We set up an infrastructure on AWS to receive data from the devices, save them t
 
 ## Missing functionalities
 * LoRa communication infrastructure
+* Implement the "Zone" mechanism: Latitude and Longitude
 * Web dashboard
 * Connecting the different components together
 * Add security functionalities to the overall system, in order to prevent tampering with the firmware or publicly disclosing information.
+* Power Management: analysis on the cloud
 
 ## Evaluation conducted since the 1st delivery
 As previously stated, getting the proof of concept to work took us a lot of time, so only managed to think about what metrics to evaluate once our infrastructure is all up and running. 

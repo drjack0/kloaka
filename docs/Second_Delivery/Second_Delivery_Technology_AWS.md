@@ -1,6 +1,8 @@
 # Technology - AWS
 In this section are explained all the steps made for developing the Kloaka's backend infrastructure.
 
+![network-overview-second-delivery](../Images/technology/aws/network_overview_second.png)
+
 ## Main model
 ![main-model](../Images/technology/aws/Main.png)
 Main AWS services used are:
@@ -17,9 +19,11 @@ Serverless Framework's aim is to easy create a CloudFormation Template, upload i
 ![serverless-logo](../Images/technology/aws/serverless_framework_logo.png)
 ### Data from Devices - Lambda Organizer
 First step of the Kloaka machine is to have devices data on the cloud. Every device, through [TTN & AWS IoT Core integration](https://www.thethingsnetwork.org/docs/applications/aws/), can publish on IoT Mqtt Broker. Everytime a message is posted, an IoT Rule is called 
+
 ```sql
 SELECT * FROM 'kloaka_from_device'
 ```
+
 and a Lambda is triggered: Lambda "Organizer".
 
 Main goal of this function is to organize and format data riceived from devices and put them in the DynamoDB Table.
@@ -133,18 +137,9 @@ At the moment there aren't `POST`, `REMOVE` or `PUT` endpoints, so there is no t
 
 ![api-endpoints](../Images/technology/aws/API.png)
 
-- WEBSOCKET ENDPOINT: `wss://0o7o4txyea.execute-api.us-east-1.amazonaws.com/dev
-`
+- WEBSOCKET ENDPOINT: `wss://0o7o4txyea.execute-api.us-east-1.amazonaws.com/dev`
 - API REST ENDPOINT: `https://mo6thqx9bj.execute-api.us-east-1.amazonaws.com`
 
 ### DashBoard
 
 WORK IN PROGRESS
-
-## Future Plans
-- Implement the "Zone" mechanism with Lambdas and Dynamo Tables
-  - Latitude and Longitude ranges
-- Send messages to devices through API
-  - "Cognito" authorization
-- Power Management, analysis on the cloud
-- Dashboard
