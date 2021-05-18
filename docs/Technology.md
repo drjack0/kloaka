@@ -28,7 +28,7 @@ This sensors works mapping pH changes to small voltage changes then amplified by
 ### Measuring the flow
 To measure the flow will be infeasible to use a device like [this](https://theorycircuit.com/water-flow-sensor-yf-s201-arduino-interface/) as the impurity and particles in wastewater could easly block it letting the device be unreliable.
 So we reused the concept and camed up with a bigger 3d printed paddle wheel like the one below with an embedded rotary encoder.
-![paddle_design](Images/tecnology/paletta.jpg)
+![paddle_design](Images/technology/paletta.jpg)
 From [this design](https://eribuijs.blogspot.com/2017/01/peddle-wheel-boat-3d-printed.html)
 ## Actuators
 
@@ -37,7 +37,7 @@ To reduce energy consuption and to increase the lifespan of the device the only 
 It lights up when the system detects an anomaly in the tubing that will be further solved from the operator.
 
 ## Network overview
-![network_overview](Images/tecnology/network_overview.png)
+![network_overview](Images/technology/network_overview.png)
 ### LoRaWAN
 As the newtork will be sparse we chose LoRa as the transmitting medium for the device as it's capable of long range transmission, low energy consuption and a discrete resistance to interference.
 

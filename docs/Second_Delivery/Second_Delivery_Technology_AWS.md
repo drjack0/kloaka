@@ -2,7 +2,7 @@
 In this section are explained all the steps made for developing the Kloaka's backend infrastructure.
 
 ## Main model
-![main-model](../Images/tecnology/aws/Main.png)
+![main-model](../Images/technology/aws/Main.png)
 Main AWS services used are:
 - AWS Lambda: Serverless functions
 - DynamoDB: NoSQL Database with stream integration
@@ -14,7 +14,7 @@ With [Serverless Framework](https://www.serverless.com), integrating AWS CLI, ya
 
 Serverless Framework's aim is to easy create a CloudFormation Template, upload it on AWS and deploy all functionalities producted.
 
-![serverless-logo](../Images/tecnology/aws/serverless_framework_logo.png)
+![serverless-logo](../Images/technology/aws/serverless_framework_logo.png)
 ### Data from Devices - Lambda Organizer
 First step of the Kloaka machine is to have devices data on the cloud. Every device, through [TTN & AWS IoT Core integration](https://www.thethingsnetwork.org/docs/applications/aws/), can publish on IoT Mqtt Broker. Everytime a message is posted, an IoT Rule is called 
 ```sql
@@ -73,7 +73,7 @@ Devices are registered in a DynamoDB Table and updated everytime comes a measure
 | 50               | Low Flow     |
 | 0                | No Flow      |
 
-![api-endpoints](../Images/tecnology/aws/dynamodb-streams.png)
+![api-endpoints](../Images/technology/aws/dynamodb-streams.png)
 
 When a sensor's value is updated in DB, a Lambda function is triggered through the DynamoDB Stream functionalities. This Lambda checks the following sensor's filling value and compare this one with the current sensor's value
 
@@ -116,7 +116,7 @@ Example: id1 = 01, id2 = 02 -> problem_id = 0102.
 ```
 
 ### Rest & WebSocket API
-![api-endpoints](../Images/tecnology/aws/api-gateway-diagram-general.svg)
+![api-endpoints](../Images/technology/aws/api-gateway-diagram-general.svg)
 
 All the `GET` endpoints are exposed publicly.
 We have two type of API Gateway endpoints:
@@ -131,7 +131,7 @@ We have two type of API Gateway endpoints:
 
 At the moment there aren't `POST`, `REMOVE` or `PUT` endpoints, so there is no type of protection on the API endpoints
 
-![api-endpoints](../Images/tecnology/aws/API.png)
+![api-endpoints](../Images/technology/aws/API.png)
 
 - WEBSOCKET ENDPOINT: `wss://0o7o4txyea.execute-api.us-east-1.amazonaws.com/dev
 `
