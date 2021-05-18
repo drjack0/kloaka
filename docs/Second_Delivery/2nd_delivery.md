@@ -34,6 +34,7 @@ We set up an infrastructure on AWS to receive data from the devices, save them t
 * LoRa communication infrastructure
 * Implement the "Zone" mechanism: Latitude and Longitude
 * Web dashboard
+* Python script to generate the values to be forwarded to the FIT/IoT-lab devices.
 * Connecting the different components together
 * Add security functionalities to the overall system, in order to prevent tampering with the firmware or publicly disclosing information.
 * Power Management: analysis on the cloud
