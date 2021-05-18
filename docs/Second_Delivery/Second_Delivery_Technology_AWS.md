@@ -144,7 +144,6 @@ WORK IN PROGRESS
 ## Future Plans
 - Implement the "Zone" mechanism with Lambdas and Dynamo Tables
   - Latitude and Longitude ranges
-- Send messages to devices through API
-  - "Cognito" authorization
+- Send messages to devices (LED indicator on/off) through Lambda
 - Power Management, analysis on the cloud
 - Dashboard
