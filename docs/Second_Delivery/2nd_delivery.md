@@ -8,7 +8,7 @@ It was observed that our idea was too rich, meaning we planned to add too many f
 ### 2. Employ ultrasonic sensors
 We were also suggested that we might try to do that in a non-invasive way (we planned to add turbines inside the pipes, which required to open the pipes themselves) by employing \[ultra-]sound sensors.  
 
-### 3. The choice of our sensors
+### 3. Our choice of sensors
 Another comment regarded the fact that employing ph-meters and water turbidity sensors would make no sense in wastewaters.
 
 ## Changes to the concept 
