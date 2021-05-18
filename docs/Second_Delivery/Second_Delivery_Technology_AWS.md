@@ -140,10 +140,3 @@ At the moment there aren't `POST`, `REMOVE` or `PUT` endpoints, so there is no t
 ### DashBoard
 
 WORK IN PROGRESS
-
-## Future Plans
-- Implement the "Zone" mechanism with Lambdas and Dynamo Tables
-  - Latitude and Longitude ranges
-- Send messages to devices (LED indicator on/off) through Lambda
-- Power Management, analysis on the cloud
-- Dashboard
