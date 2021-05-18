@@ -1,6 +1,8 @@
 # Technology - AWS
 In this section are explained all the steps made for developing the Kloaka's backend infrastructure.
 
+![network-overview-second-delivery](../Images/technology/aws/network_overview_second.png)
+
 ## Main model
 ![main-model](../Images/technology/aws/Main.png)
 Main AWS services used are:
