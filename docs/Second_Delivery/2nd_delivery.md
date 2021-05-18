@@ -39,7 +39,7 @@ We set up an infrastructure on AWS to receive data from the devices, save them t
 ## Evaluation conducted since the 1st delivery
 As previously stated, getting the proof of concept to work took us a lot of time, so only managed to think about what metrics to evaluate once our infrastructure is all up and running. 
 
-## What we exoect expect to evaluate till the final delivery
+## What we expect to evaluate till the final delivery
 We decided to structure the evaluation of our project based on the following factors:
 * Speed
 * Capacity
