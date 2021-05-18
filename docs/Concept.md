@@ -1,7 +1,7 @@
 # Concept
 This document introduces Kloaka.
 ## \[20/05/2021] v2: Group Project MVP Presentation
-*Considering the [comments](./2nd_delivery.md) received during the 1st delivery, the project's scope was downsized accordingly.*
+*Considering the [comments](./Second_Delivery/2nd_delivery.md) received during the 1st delivery, the project's scope was downsized accordingly.*
 
 We believe that there is a tight relationship between the quality of marine waters and that of those waters that flow into seas, such as sewage waters.
 
@@ -9,7 +9,7 @@ In order to improve the sea conditions from several points of view (aquaculture 
 
 We introduce Kloaka: an automated sytem whose aim is to the detect the presence of leakages or physical obstructions inside sewage pipes. 
 
-Kloaka's aim is to enhance the quality of the maritime waters by providing the means to *control the flow of sewage waters* and thus detect: leakages, potential dumping of illegal substances in the sewers (which, if more dense, will result in changes to the natural flow of wastewaters) and physical obstructions in the pipes, which will of course bring negative effects to sea waters, were this kind of waters flow.
+Kloaka's aim is to enhance the quality of the maritime waters by providing the means to *control the flow of sewage waters* and thus detect: leakages, potential dumping of illegal substances in the sewers (which, if more dense or if the flow significanly increases, will result in changes to the natural flow of wastewaters) and physical obstructions in the pipes, which will of course bring negative effects to sea waters, were this kind of waters flow.
 
 As a natural consequence, those maritime cities employing the system we propose will be able to gain a lot of benefits coming from the capability to boast about having higher quality sea waters, such as attracting more tourists.
 
