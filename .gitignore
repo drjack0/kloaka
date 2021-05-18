@@ -5,3 +5,6 @@
 /aws/.serverless/*
 /aws/mqtt_tester/node_modules/*
 /aws/mqtt_tester/certs/*
+
+# Misc
+keys.txt
