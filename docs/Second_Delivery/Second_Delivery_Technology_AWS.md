@@ -17,9 +17,11 @@ Serverless Framework's aim is to easy create a CloudFormation Template, upload i
 ![serverless-logo](../Images/technology/aws/serverless_framework_logo.png)
 ### Data from Devices - Lambda Organizer
 First step of the Kloaka machine is to have devices data on the cloud. Every device, through [TTN & AWS IoT Core integration](https://www.thethingsnetwork.org/docs/applications/aws/), can publish on IoT Mqtt Broker. Everytime a message is posted, an IoT Rule is called 
+
 ```sql
 SELECT * FROM 'kloaka_from_device'
 ```
+
 and a Lambda is triggered: Lambda "Organizer".
 
 Main goal of this function is to organize and format data riceived from devices and put them in the DynamoDB Table.
