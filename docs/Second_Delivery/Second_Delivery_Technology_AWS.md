@@ -133,8 +133,7 @@ At the moment there aren't `POST`, `REMOVE` or `PUT` endpoints, so there is no t
 
 ![api-endpoints](../Images/technology/aws/API.png)
 
-- WEBSOCKET ENDPOINT: `wss://0o7o4txyea.execute-api.us-east-1.amazonaws.com/dev
-`
+- WEBSOCKET ENDPOINT: `wss://0o7o4txyea.execute-api.us-east-1.amazonaws.com/dev`
 - API REST ENDPOINT: `https://mo6thqx9bj.execute-api.us-east-1.amazonaws.com`
 
 ### DashBoard
