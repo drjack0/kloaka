@@ -5,7 +5,7 @@
 ### 1. The project idea is too rich
 It was observed that our idea was too rich, meaning we planned to add too many features to the project (namely: water quality control and leakage/obstruction checks) and we were suggested to focus only on the most interesting feature: checking for leakages or physical obstructions in the pipes. 
 
-### 2. Emoploy ultra-sonic sensors
+### 2. Employ ultrasonic sensors
 We were also suggested that we might try to do that in a non-invasive way (we planned to add turbines inside the pipes, which required to open the pipes themselves) by employing \[ultra-]sound sensors.  
 
 ### 3. The choice of our sensors
