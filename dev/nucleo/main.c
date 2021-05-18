@@ -29,7 +29,7 @@ static char stack[THREAD_STACKSIZE_MAIN];
 #if (FF!=0)
 #define SLEEP 1 //If FF is set to 1 the device will sllep 1 sec between measurements
 #else
-#define SLEEP 60*10 //Nominal 10 min sleep beween measurements
+#define SLEEP 60*2 //Nominal 10 min sleep beween sensing
 #endif
 
 //Samples to take each time we sense
