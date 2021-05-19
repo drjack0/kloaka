@@ -6,7 +6,7 @@ This is a common approch in industrial grade flow meter as we can see for exampl
 
 ### Sensor developing and structure
 We tried to reproduce this behavior using common ultrasonics range finder.
-![dia_sensor](docs/Images/technology/dia_sensor.png)
+![dia_sensor](/docs/Images/technology/dia_sensor.png)
 We started ripping down the metal enclosure from the piezo spekers of the sensor and placing the bare piezos on a plastic tube, tryng to measure the "bounce-back" time of the trasmitted wave, hoowever this didn't produce valuable results.
 
 Thus we tryed angling the tx and rx piezos by different angles using 3d printed angled prisms, this also has not produced valuable results.
@@ -21,7 +21,7 @@ This works pretty well even if there are some outliers in the measure (we will d
 
 An important thing that we notice is that in this configuration the place of the Tx sensor is almost meaningless, in fact by moving it a different distances from the rx one it seems to not change much.
 Pheraps we think that water flowing into the tube generates some particular frequency that, detected via the rx piezo triggers the sensor anyway.
-![img_sensor](docs/Images/technology/img_sensor.jpg)
+![img_sensor](/docs/Images/technology/img_sensor.jpg)
 
 ### How do we measure?
 
