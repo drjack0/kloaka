@@ -31,7 +31,7 @@ Since we send an integer between 0 and 100 a payload of 3 bytes we got the follo
 
 | SF |     TOA     |        Duty cycle       |
 |:--:|:-----------:|:-----------------------:|
-|  7 |   30.98 ms  | One message every 00:0 |
+|  7 |   30.98 ms  | One message every 00:03 |
 | 12 |  827.39 ms  | One message every 01:23 |
 
 In the end we adjusted the sleep time to 7 mins to be more than compliant with [ttn fair use policy](https://www.thethingsnetwork.org/docs/lorawan/duty-cycle/) even at SF12.
