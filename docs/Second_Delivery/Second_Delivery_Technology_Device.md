@@ -28,8 +28,8 @@ Pheraps we think that water flowing into the tube generates some particular freq
 
 To avoid false positives (and to in future get the direction of the flow) we employed, as now, two sensors.
 
-To get an accurate masure while the values received from the sensors are oscillating we decide to repeat multiple measures for each sensor.
-At first we have a reference phase in wiche we sample the empty pipe, for now, 10 times, we take the minimum and the maximum of this measures and we store it.
+To get an accurate measure while the values received from the sensors are oscillating we decide to repeat multiple measures for each sensor.
+At first we have a reference phase in wich we sample the empty pipe, for now, 10 times, we take the minimum and the maximum of this measures and we store it.
 
 Each sensing phase takes `(2+0.3) * NUMBER OF MEASURES * NUMBER OF SENSORS s so in our case 2.3 * 20 = 46 s`.
 
