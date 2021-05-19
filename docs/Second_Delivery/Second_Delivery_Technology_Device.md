@@ -7,6 +7,7 @@ This is a common approch in industrial grade flow meter as we can see for exampl
 ### Sensor developing and structure
 We tried to reproduce this behavior using common ultrasonics range finder.
 ![dia_sensor](/docs/Images/technology/dia_sensor.png)
+
 We started ripping down the metal enclosure from the piezo spekers of the sensor and placing the bare piezos on a plastic tube, tryng to measure the "bounce-back" time of the trasmitted wave, hoowever this didn't produce valuable results.
 
 Thus we tryed angling the tx and rx piezos by different angles using 3d printed angled prisms, this also has not produced valuable results.
