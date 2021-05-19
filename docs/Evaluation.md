@@ -4,7 +4,7 @@ This document provides information about the "evaluation" branch of the project
 ## \[20/05/2021] V2: Group Project MVP Presentation
 
 ### Cloud evaluation
-To evaluate the performace and the robustness of the cloud issue detection side we developed a native firmware with a shell command `flow <value_1 ... value_n>` that sends to the cloud (via `mqtt-sn -> mqtt`) crafted flow data every hour.
+To evaluate the performance and the robustness of the cloud issue detection side we developed a native firmware with a shell command `flow <value_1 ... value_n>` that sends to the cloud (via `mqtt-sn -> mqtt`) crafted flow data every hour.
 
 We made some tests and the cloud infrastructure seems to respond well but we are working on real test cases.
 
