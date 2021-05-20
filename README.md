@@ -16,6 +16,9 @@ A sewer monitoring system whose objective is to monitor the quality of sewage wa
 * [Second delivery](./docs/2nd_delivery.md)
 
 ## Videos 
+### 1st delivery
 * [Presentation](https://youtu.be/SEe99dUtCmw)
 * [Technology](https://youtu.be/B3lonm8XUrQ)
 * [Evaluation](https://youtu.be/adElgG_bEdw)
+### 2nd delivery
+* [Future Plans](https://www.youtube.com/watch?v=NFSLwjiqagY)
