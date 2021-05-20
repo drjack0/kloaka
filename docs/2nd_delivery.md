@@ -22,7 +22,8 @@ The work on the proof of concept took us a lot of time to get a functioning prot
 
 We concluded that, in order for the proof of concept to work, we needed to use a **metal** pipe, with a small section to have it completely filled with  water and thus recognize a regular flow using the sensors.   
 The picture below shows an example of our configuration
->IMG HERE<
+![dia_sensor](/docs/Images/technology/dia_sensor.png)
+
 
 ### IoT Lab
 We set up a [notebook](/dev/iot-lab/Kloaka.ipynb) in order to run large-scale experiments in the real-world testbed of FIT/IoT-Lab, alongside a [trigger script](/scripts) which will be used to test the experiments by triggering flow events on the nodes offered by the testbed.
