@@ -11,15 +11,15 @@ We made some tests and the cloud infrastructure seems to respond well but we are
 ### Consuption evaluation
 To evaluate consumpion, at least in this perliminary phase, we measured the voltage drop on a 1 ohm (±1%) resistor conneted between the `IDD` terminal of the nucleo board, the using ohm law `I=V/R` we determined our consumptions.
 
-The device now consumes about `6.5mA in idle (7 min * 10)` and about `6.7mA in the sensing phase (1 min * 10)`.
+The device now consumes about `7.5mA in idle (7 min * 10)` and about `7.7mA in the sensing phase (1 min * 10)`.
 
 Thus making an exitation of the lora modem consuption (based on [this paper](https://www.mdpi.com/1424-8220/17/10/2364)) it will consume about `30mA for about 10 s each hour`.
 
-So for exmaple if in on hour we are 8 times in idele we measure 7 times and we transimt once (very roughly) we will (very roughly) have something like `6.9 mA` consumption.
+So for exmaple if in on hour we are 8 times in idele we measure 7 times and we transimt once (very roughly) we will (very roughly) have something like `7.9 mA` consumption.
 
 Needing to be a battery powered device this values are infeasible as the battery will drain too fast.
 
-As an example if we use a 10.000mAh battery the extimated life of our device will be **only 2 months**. (Calculator [here](https://www.digikey.com/en/resources/conversion-calculators/conversion-calculator-battery-life))
+As an example if we use a 10.000mAh battery the extimated life of our device will be **only 1.3 months**. (Calculator [here](https://www.digikey.com/en/resources/conversion-calculators/conversion-calculator-battery-life))
 
 We plan to make **heavy** use of the power management RIOT library, to reduce idle consumption of at least an order of magnitude (from [here](https://components101.com/microcontrollers/stm32-nucleo-f401re-pinout-datasheet) we se that even without an RTC in standby mode it consumes only 2.4uA) maybe going further down using an RTC.
 
