@@ -132,6 +132,7 @@ We have two type of API Gateway endpoints:
 * WEBSOCKET API
   * `$connect` -> Connect to WebSocket API
   * `$disconnect`-> Disconnect from WebSocket API
+  * `$default` -> Exchange of data through Websocket Channel
 
 At the moment there aren't `POST`, `REMOVE` or `PUT` endpoints, so there is no type of protection on the API endpoints
 

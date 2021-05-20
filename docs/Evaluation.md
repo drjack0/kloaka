@@ -3,6 +3,41 @@ This document provides information about the "evaluation" branch of the project
 
 ## \[20/05/2021] V2: Group Project MVP Presentation
 
+### Cloud evaluation
+To evaluate the performance and the robustness of the cloud issue detection side we developed a native firmware with a shell command `flow <value_1 ... value_n>` that sends to the cloud (via `mqtt-sn -> mqtt`) crafted flow data every hour.
+
+We made some tests and the cloud infrastructure seems to respond well but we are working on real test cases.
+
+### Consuption evaluation
+To evaluate consumpion, at least in this perliminary phase, we measured the voltage drop on a 1 ohm (±1%) resistor conneted between the `IDD` terminal of the nucleo board, the using ohm law `I=V/R` we determined our consumptions.
+
+The device now consumes about `6.5mA in idle (7 min * 10)` and about `6.7mA in the sensing phase (1 min * 10)`.
+
+Thus making an exitation of the lora modem consuption (based on [this paper](https://www.mdpi.com/1424-8220/17/10/2364)) it will consume about `30mA for about 10 s each hour`.
+
+So for exmaple if in on hour we are 8 times in idele we measure 7 times and we transimt once (very roughly) we will (very roughly) have something like `6.9 mA` consumption.
+
+Needing to be a battery powered device this values are infeasible as the battery will drain too fast.
+
+As an example if we use a 10.000mAh battery the extimated life of our device will be **only 2 months**. (Calculator [here](https://www.digikey.com/en/resources/conversion-calculators/conversion-calculator-battery-life))
+
+We plan to make **heavy** use of the power management RIOT library, to reduce idle consumption of at least an order of magnitude (from [here](https://components101.com/microcontrollers/stm32-nucleo-f401re-pinout-datasheet) we se that even without an RTC in standby mode it consumes only 2.4uA) maybe going further down using an RTC.
+
+![test_setup](/docs/Images/technology/test_setup.jpg)
+
+### Duty cycle 
+To see if we are adhering to duty cycle restrictions we used the [following calculator](https://www.loratools.nl/#/airtime).
+Since we send an integer between 0 and 100 a payload of 3 bytes we got the following:
+
+| SF |     TOA     |        Duty cycle       |
+|:--:|:-----------:|:-----------------------:|
+|  7 |   30.98 ms  | One message every 00:03 |
+| 12 |  827.39 ms  | One message every 01:23 |
+
+In the end we adjusted the sleep time to 7 mins to be more than compliant with [ttn fair use policy](https://www.thethingsnetwork.org/docs/lorawan/duty-cycle/) even at SF12.
+
+Howewer we have still to deal with downlink limitation.
+
 ## \[08/04/2021] V1: Initial ideas pitch
 ## Constraints
 The devices work in very particular and limit conditions, like thick walls, absence of electrical sources and difficulties in comunicating cause in the underground, but they don't need a large bandwidth and no *real time* data are required
