@@ -139,9 +139,11 @@ static int cmd_test(int argc, char **argv){
 
     puts(TTN_DEV_ID);
 
-    for(int i = 0; i < 8; i++) {
-        printf("%d\n", i);
-        printf("%c",  deveui[i]);
+    int i;
+    for (i = 0; i < 8; i++)
+    {
+        if (i > 0) printf(",");
+        printf("%02X", deveui[i]);
     }
     printf("\n");
 
