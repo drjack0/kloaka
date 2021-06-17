@@ -27,11 +27,15 @@ static char _recv_stack[THREAD_STACKSIZE_DEFAULT];
 
 static semtech_loramac_t loramac;  /* The loramac stack descriptor */
 
+#ifndef TTN_DEV_ID
+#define TTN_DEV_ID ("01")
+#endif
+
 static hts221_t hts221; /* The HTS221 device descriptor */
 
-static const uint8_t deveui[LORAMAC_DEVEUI_LEN] = { 0x12, 0x34, 0x56, 0x78, 0x91, 0x01, 0x12, 0x31 };
+static const uint8_t deveui[LORAMAC_DEVEUI_LEN] = { 0x98, 0x76, 0x54, 0x32, 0x10, 0x98, 0x76, 0x56 };
 static const uint8_t appeui[LORAMAC_APPEUI_LEN] = { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
-static const uint8_t appkey[LORAMAC_APPKEY_LEN] = { 0x91, 0xBC, 0x14, 0xEA, 0x75, 0x03, 0x65, 0x4D, 0x85, 0x68, 0xC4, 0xC5, 0xEA, 0x7C, 0xCD, 0x70 };
+static const uint8_t appkey[LORAMAC_APPKEY_LEN] = { 0x6D, 0x20, 0xBD, 0x08, 0xF0, 0xF1, 0x05, 0xBA, 0xD6, 0x87, 0x5E, 0x20, 0x83, 0x31, 0x3C, 0xDB };
 
 static char encoding_table[] = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H',
                                 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P',
@@ -72,58 +76,6 @@ char *base64_encode(const char *data,
     return encoded_data;
 }
 
-/* 
-static char *decoding_table = NULL;
-void build_decoding_table(void) {
-
-    decoding_table = malloc(256);
-
-    for (int i = 0; i < 64; i++)
-        decoding_table[(unsigned char) encoding_table[i]] = i;
-}
-
-
-void base64_cleanup(void) {
-    free(decoding_table);
-}
-
-unsigned char *base64_decode(const char *data,
-                             size_t input_length,
-                             size_t *output_length) {
-
-    if (decoding_table == NULL) build_decoding_table();
-
-    if (input_length % 4 != 0) return NULL;
-
-    *output_length = input_length / 4 * 3;
-    if (data[input_length - 1] == '=') (*output_length)--;
-    if (data[input_length - 2] == '=') (*output_length)--;
-
-    unsigned char *decoded_data = malloc(*output_length);
-    if (decoded_data == NULL) return NULL;
-
-    for (size_t i = 0, j = 0; i < input_length;) {
-
-        uint32_t sextet_a = data[i] == '=' ? 0 & i++ : decoding_table[(unsigned char)data[i++]];
-        uint32_t sextet_b = data[i] == '=' ? 0 & i++ : decoding_table[(unsigned char)data[i++]];
-        uint32_t sextet_c = data[i] == '=' ? 0 & i++ : decoding_table[(unsigned char)data[i++]];
-        uint32_t sextet_d = data[i] == '=' ? 0 & i++ : decoding_table[(unsigned char)data[i++]];
-
-        uint32_t triple = (sextet_a << 3 * 6)
-        + (sextet_b << 2 * 6)
-        + (sextet_c << 1 * 6)
-        + (sextet_d << 0 * 6);
-
-        if (j < *output_length) decoded_data[j++] = (triple >> 2 * 8) & 0xFF;
-        if (j < *output_length) decoded_data[j++] = (triple >> 1 * 8) & 0xFF;
-        if (j < *output_length) decoded_data[j++] = (triple >> 0 * 8) & 0xFF;
-    }
-
-    return decoded_data;
-}  */
-
-
-
 static void *_recv(void *arg)
 {
    msg_init_queue(_recv_queue, RECV_MSG_QUEUE);
@@ -159,9 +111,9 @@ void send(int val){
 
         size_t inl = strlen(message);
         size_t outl;
-        printf("Trying to encode the message (len: %zu )...\n", inl);
+        printf("Trying to encode the message (len: %u)...\n", inl);
         char* encoded = base64_encode(message, inl, &outl);
-        printf("Result: %s (%zu )\n", encoded, outl);
+        printf("Result: %s (%u )\n", encoded, outl);
         /* send the message here */
         if (semtech_loramac_send(&loramac,
                                  (uint8_t *)message, strlen(message)) != SEMTECH_LORAMAC_TX_DONE) {
@@ -181,6 +133,19 @@ int scheduled(int schedule[], int len){
     return 0;
 }
 
+static int cmd_test(int argc, char **argv){
+    (void)argc;
+    (void)argv;
+
+    puts(TTN_DEV_ID);
+
+    for(int i = 0; i < LORAMAC_DEVEUI_LEN; i++) {
+        printf("%c", deveui[i])
+    }
+    printf("\n");
+}
+
+
 static int cmd_flow(int argc, char **argv){
     int schedule[150];
     if(argc<2){
@@ -196,6 +161,7 @@ static int cmd_flow(int argc, char **argv){
         argc--;
         for(int i=0;i<argc;i++){
             schedule[i]=atoi(argv[i]);
+            printf("Scheduling: %d\n", atoi(argv[i]));
         }
         scheduled(schedule,argc);
     }
@@ -242,6 +208,8 @@ int lora_init(void) {
 
 static const shell_command_t shell_commands[] = {
     { "flow", "set the device's current flow", cmd_flow },
+    { "test", "testcmd", cmd_test },
+
     { NULL, NULL, NULL }};
 
 int main(void){
