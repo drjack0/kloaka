@@ -5,7 +5,7 @@ APPLICATION = kloaka
 BOARD ?= b-l072z-lrwan1
 
 # This has to be the absolute path to the RIOT base directory:
-RIOTBASE ?= $(CURDIR)/../RIOT
+RIOTBASE ?= /senslab/users/priamo/RIOT/
 
 USEMODULE += xtimer
 USEMODULE += hts221
