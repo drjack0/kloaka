@@ -140,7 +140,7 @@ static int cmd_test(int argc, char **argv){
     puts(TTN_DEV_ID);
 
     for(uint8_t i = 0; i < LORAMAC_DEVEUI_LEN; i++) {
-        printf("%u", deveui[i]);
+        printf("%c",  (const char)deveui[i]);
     }
     printf("\n");
 
