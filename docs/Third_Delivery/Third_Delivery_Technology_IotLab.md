@@ -31,3 +31,10 @@ As the transmission obstruction underground could be significant, a multi-hop so
 
 After the messages are sent by the devices to TTN via the LoRAWAN uplink, they are directly forwarded to AWS IoT Core using the MQTT protocol. This is achieved thanks to the [Default Integration](https://www.thethingsindustries.com/docs/integrations/cloud-integrations/aws-iot/default/) offered by TTN itself, which required the deployment of an *AWS CloudFormation stack* directly  into our cloud infrastructiure.  
 In this way, an AWS IoT rule specifically set to listen to the uplink topic of the TTN application we created is capable of intercepting the messages kloaka devices send to the uplink without the need to add any additional layer to the infrastructure.
+
+**Security**
+
+Concerning the Security aspect of the system, TTN already provides solid security features, in particular: 
+* The OTAA method to join TTN dynamically assigns an address and negotiates security keys with the devices, therefore securing the communication between them. 
+* The communication between TTN and AWS is also secure, as the integration described above requires to set some application-specific configurations, like for example an API key which must remain secret. 
+* It is not possible to sniff the MQTT messages, as the device's devEUI as well as an additional API keys are needed, and in order to know them one would need to access the TTN console (which is of course password-protected).
