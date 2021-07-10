@@ -38,3 +38,8 @@ Concerning the Security aspect of the system, TTN already provides solid securit
 * The OTAA method to join TTN dynamically assigns an address and negotiates security keys with the devices, therefore securing the communication between them. 
 * The communication between TTN and AWS is also secure, as the integration described above requires to set some application-specific configurations, like for example an API key which must remain secret. 
 * It is not possible to sniff the MQTT messages, as the device's devEUI as well as an additional API keys are needed, and in order to know them one would need to access the TTN console (which is of course password-protected).
+
+## Collective Intelligence
+
+In order to gather information about the weather, Kloaka relies on the REST APIs provided by [openweathermap](https://openweathermap.org/api), which allow to issue queries about the current weather in the city of interest via HTTP requests in the following format:
+`'https://api.openweathermap.org/data/2.5/weather?q=<CITY,COUNTRY>&APPID=<API KEY>` by simply replacing <\CITY, COUTRY\> with something like "Rome,it" and <\API KEY\> with the API key received after subscribing to the service (a free tier allowing up to 60 requests per day is offered).
