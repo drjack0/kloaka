@@ -42,4 +42,4 @@ Concerning the Security aspect of the system, TTN already provides solid securit
 ## Collective Intelligence
 
 In order to gather information about the weather, Kloaka relies on the REST APIs provided by [openweathermap](https://openweathermap.org/api), which allow to issue queries about the current weather in the city of interest via HTTP requests in the following format:
-`https://api.openweathermap.org/data/2.5/weather?q=<CITY,COUNTRY>&APPID=<API KEY>` by simply replacing <\CITY, COUTRY\> with something like "Rome,it" and <\API KEY\> with the API key received after subscribing to the service (a free tier allowing up to 60 requests per day is offered).
+`https://api.openweathermap.org/data/2.5/weather?q=<CITY,COUNTRY>&APPID=<API KEY>` by simply replacing <CITY, COUTRY\> with something like "Rome,it" and <API KEY\> with the API key received after subscribing to the service (a free tier allowing up to 60 requests per day is offered).
