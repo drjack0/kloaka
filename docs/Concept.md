@@ -9,9 +9,14 @@ In order to improve the sea conditions from several points of view (aquaculture 
 
 We introduce Kloaka: an automated sytem whose aim is to the detect the presence of leakages or physical obstructions inside sewage pipes. 
 
-Kloaka's aim is to enhance the quality of the maritime waters by providing the means to *control the flow of sewage waters* and thus detect: leakages, potential dumping of illegal substances in the sewers (which, if more dense or if the flow significanly increases, will result in changes to the natural flow of wastewaters) and physical obstructions in the pipes, which will of course bring negative effects to sea waters, were this kind of waters flow.
+Kloaka's aim is to enhance the quality of the maritime waters by providing the means to *control the flow of sewage waters* and thus detect: leakages and physical obstructions in the pipes, which will of course bring negative effects to sea waters, were this kind of waters flow.
+
+The nature of the obstructions can vary, from physical objects that are thrown away by people (street garbage), to rubbish and increased amount of water caused by precipitations and bad weather in general. 
 
 As a natural consequence, those maritime cities employing the system we propose will be able to gain a lot of benefits coming from the capability to boast about having higher quality sea waters, such as attracting more tourists.
+
+## Collective Intelligence
+Kloaka uses collective intelligence gathered from weather forecasts websites like [this one](https://openweathermap.org/) in order to help identifying the potential cause of the detected issue.
 
 ## Personas 
 
