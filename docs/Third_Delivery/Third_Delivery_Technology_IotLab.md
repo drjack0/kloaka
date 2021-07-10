@@ -12,7 +12,7 @@ In order to run large-scale experiments with the nodes from IoT-Lab, a [trigger 
 We planned our experiments to follow specific patterns in order to test all the possible combinations supported by our system.
 
 ### LoRaWAN
-As the newtork will be sparse we chose LoRa as the transmitting medium for the device as it is capable of long range transmission, low energy consuption and a discrete resistance to interference.
+As the network is sparse, we chose LoRa as the transmitting medium for the device as it is capable of long range transmission, low energy consumption and a discrete resistance to interference.
 
 The `st-lrwan1` nodes communicate using the LoRaWAN technology thanks to [The Things Network](https://www.thethingsnetwork.org/).
 
