@@ -6,6 +6,11 @@
 /aws/mqtt_tester/node_modules/*
 /aws/mqtt_tester/certs/*
 
+#Ignored files in web_dashboard directory
+/web_dashboard/node_modules/*
+/web_dashboard/package-lock.json
+/web_dashboard/build/*
+
 # Misc
 keys.txt
 *.pem
