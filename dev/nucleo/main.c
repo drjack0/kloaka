@@ -14,6 +14,10 @@
 #include "net/emcute.h"
 #include "net/ipv6/addr.h"
 
+//Sleep
+#include "periph/pm.h"
+#include "periph/rtc.h"
+
 //Networking
 #define _IPV6_DEFAULT_PREFIX_LEN        (64U)
 
@@ -27,42 +31,55 @@ static char stack[THREAD_STACKSIZE_MAIN];
 
 //Dev fast forward
 #if (FF!=0)
-#define SLEEP 1 //If FF is set to 1 the device will sllep 1 sec between measurements
+#define SLEEP 10 //If FF is set to 1 the device will sllep 1 sec between measurements
 #else
 #define SLEEP 60*2 //Nominal 10 min sleep beween sensing
 #endif
 
 //Samples to take each time we sense
-#define SAMPLES 10
+#define SAMPLES 20
 //No of ultrasonic sensor used
 #define SENSORS 2
 //When to send data
 #define ROUNDS 10
-//Undefine to make parallel mesurements (experimenting)
-#define SERIAL 1
 
-#define LOW_PERCENTILE 0.25
-#define HIGH_PERCENTILE 0.75
+//Sleep
+const int mode = 1;
+struct tm timer;
 
-//Structure definition to store ref values
-typedef struct refer{
-    int low;
-    int high;
-} refer;
+/**
+ * Call-back function invoked when RTC alarm triggers wakeup.
+ */
+static void callback_rtc(void *arg) {
+    puts(arg);
+}
+
+void sleep_well (void) {
+    printf("Setting wakeup from mode %d in %d seconds.\n", mode, SLEEP);
+    fflush(stdout);
+
+    rtc_get_time(&timer);
+    timer.tm_sec += SLEEP;
+    rtc_set_alarm(&timer, callback_rtc, "Wakeup alarm");
+
+    /* Enter deep sleep mode */
+    pm_set(mode);
+}
 
 //State machine states enumeration
 typedef enum state {
-    STANDBY, REFERENCE, SAMPLING, CLEAN, SEND
+    STANDBY, SAMPLING, CLEAN, SEND
 }state;
 
 //Current state
-state curr_state = REFERENCE;
-
+state curr_state = SAMPLING;
+int mean[SENSORS];
+int std_dev[SENSORS];
+int n_sampled=0;
 
 gpio_t trigger[] = {GPIO_PIN(PORT_A, 10)/*D2*/, GPIO_PIN(PORT_B, 3)/*D3*/};//, GPIO_PIN(PORT_B, 5)/*D4*/};
 gpio_t echo[] = {GPIO_PIN(PORT_B, 4)/*D5*/, GPIO_PIN(PORT_B, 10)/*D6*/};//,GPIO_PIN(PORT_A, 8)/*D7*/};
 srf04_t dev[SENSORS];
-
 
 static void on_pub(const emcute_topic_t *topic, void *data, size_t len){
     char *in = (char *)data;
@@ -82,6 +99,7 @@ static void *emcute_thread(void *arg)
     emcute_run(CONFIG_EMCUTE_DEFAULT_PORT, EMCUTE_ID);
     return NULL;    /* should never be reached */
 }
+
 
 /********* NETWORK RELATED PART *********/ 
 static uint8_t get_prefix_len(char *addr)
@@ -238,68 +256,47 @@ void init(void){
     setup_mqtt();
 }
 
-int compare( const void *arg1, const void *arg2 )
-{
-    return arg1>arg2;
-}
-
-#ifndef SERIAL
-void measure(int measures[SENSORS][SAMPLES]){
-    puts("STARTING MEASUREMENTS");
-    //Reads sensors values
-    for(int j=0;j<SAMPLES;j++){
-        for(int i=0;i<SENSORS;i++){
-            srf04_trigger(&dev[i]);
-        }
-        xtimer_msleep(300);
-        for(int i=0;i<SENSORS;i++){
-            measures[i][j]=srf04_read(&dev[i]);
-            printf("%d, ", measures[i][j]);
-        }
-        printf("\n");
-        xtimer_sleep(2);
-    }
-}
-#else
-void measure(int measures[SENSORS][SAMPLES]){
-    for(int j=0;j<SAMPLES;j++){
-        for(int i=0;i<SENSORS;i++){
-            srf04_trigger(&dev[i]);
-            xtimer_msleep(300);
-            measures[i][j]=srf04_read(&dev[i]);
-            printf("%d, ", measures[i][j]);
-            xtimer_sleep(2);
-        }
-        printf("\n");
-    }
-}
-#endif
-
-void reference(refer *refer){
-    int measures[SENSORS][SAMPLES];
-    measure(measures);
+int measure(void){
+    int measures[SENSORS];
+    int state_changed=0;
+    int n_mean[SENSORS];
+    int n_std_dev[SENSORS];
     for(int i=0;i<SENSORS;i++){
-        qsort(measures[i],SAMPLES,sizeof(int),compare);
-        refer[i].low=measures[i][(int)ceil(LOW_PERCENTILE*SAMPLES)];
-        refer[i].high=measures[i][(int)ceil(HIGH_PERCENTILE*SAMPLES)];
+        srf04_trigger(&dev[i]);
+        xtimer_msleep(400);
+        measures[i]=srf04_read(&dev[i]);
+        printf("%d, ", measures[i]);
+        xtimer_msleep(400);
     }
+    printf("\n");
+    n_sampled++;
+    for(int i=0;i<SENSORS;i++){
+        n_mean[i]=mean[i]+(measures[i]-mean[i])/n_sampled;
+        n_std_dev[i]=std_dev[i]+(measures[i]-mean[i])*(measures[i]-n_mean[i]);
+        if(n_mean[i]>mean[i]+2*std_dev[i] || n_mean[i]<mean[i]-2*std_dev[i]){
+            mean[i]=0;
+            std_dev[i]=0;
+            n_sampled=0;
+            state_changed=1;
+        }else{
+            mean[i]=n_mean[i];
+            std_dev[i]=n_std_dev[i];
+        }
+    }
+    return state_changed;
 }
 
-/* The sense method now checks if data from the sensor differs from reference stored values.
-** In case it differs it returns that the flow in the pipe is the maximum value.
-** A future implementation should look for the distance of the sensed value from either
-** low and high percentiles to give the real value of flow in the pipe.
-*/
-int sense(refer *refer){
-    int measures[SENSORS][SAMPLES];
-    measure(measures);
-    for(int i=0;i<SENSORS;i++){
-        qsort(measures[i],SAMPLES,sizeof(int),compare);
-        int median = measures[i][(int)ceil(0.5*SAMPLES)];
-        if(median>refer[i].high || median<refer[i].low){
-            return 100;
-        }
-    } return 0;
+int agg_states(int states[]){
+    int zeros=0;
+    int ones=0;
+    for(int i=0;i<ROUNDS;i++){
+        if(states[i]) ones++;
+        else zeros++;
+    }
+    if(states[ROUNDS]) ones+=ROUNDS/3;
+    else zeros+=ROUNDS/3;
+    if(zeros>ones) return 0;
+    else return 100;
 }
 
 void send(int val){
@@ -309,35 +306,33 @@ void send(int val){
     pub(MQTT_TOPIC_OUT,str,0);
 }
 
-int agg_flows(int *flows){
-    qsort(flows,ROUNDS,sizeof(int),compare);
-    return flows[(int)ceil(0.5*ROUNDS)];
-}
-
 int main(void){
-    refer refer[SENSORS];
-    int flows[ROUNDS];
+    int c_state=0;
+    int states[ROUNDS];
+    int changed=0;
     int round=0;
     init();
     while(1){
         switch(curr_state){
-            case REFERENCE:
-                puts("ENTER REFERENCE");
-                reference(refer);
-                puts("EXIT REFERENCE");
-                curr_state=STANDBY;
-                break;
             case SAMPLING:
                 puts("ENTER SAMPLING");
-                flows[round]=sense(refer);
+                for(int i=0;i<SAMPLES;i++){
+                    changed=measure();
+                    if (changed){
+                        if(c_state)
+                            c_state=0;
+                        else c_state=1;
+                    }
+                }
                 round++;
+                states[round]=c_state;
                 puts("EXIT SAMPLING");
                 if(round<ROUNDS)
                 curr_state=STANDBY;
                 else curr_state=SEND;
                 break;
             case SEND:
-                send(agg_flows(flows));
+                send(agg_states(states));
                 curr_state=CLEAN;
                 break;
             case CLEAN:
@@ -346,7 +341,7 @@ int main(void){
                 break;
             case STANDBY:
                 puts("ENTER STANDBY");
-                xtimer_sleep(SLEEP);
+                sleep_well();
                 puts("EXIT STANDBY");
                 curr_state=SAMPLING;
                 break;

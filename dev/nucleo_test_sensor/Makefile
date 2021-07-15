@@ -25,9 +25,6 @@ USEMODULE += emcute
 # Optimize network stack to for use with a single network interface
 USEMODULE += gnrc_netif_single
 USEMODULE += stdio_ethos gnrc_uhcpc
-# SLEEP
-FEATURES_OPTIONAL += periph_pm
-FEATURES_OPTIONAL += periph_rtc
 
 EMCUTE_ID ?= 01
 ETHOS_BAUDRATE ?= 115200
@@ -36,7 +33,8 @@ USE_DHCPV6 ?= 0
 IPV6_PREFIX ?= fe80:2::/64 #?
 SERVER_ADDR = fec0:affe::1
 SERVER_PORT = 1885
-MQTT_TOPIC = kloaka_from_device
+MQTT_TOPIC_OUT = out
+MQTT_TOPIC_IN = in
 
 CFLAGS += -DSERVER_ADDR='"$(SERVER_ADDR)"'
 CFLAGS += -DSERVER_PORT='$(SERVER_PORT)'
