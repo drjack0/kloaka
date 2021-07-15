@@ -31,6 +31,13 @@ ifneq (,$(TTN_DEV_ID))
   CFLAGS += -DTTN_DEV_ID=\"$(TTN_DEV_ID)\"
 endif
 
+ifneq (,$(TTN_DEVEUI))
+  CFLAGS += -DTTN_DEVEUI=\"$(TTN_DEVEUI)\"
+endif
+
+ifneq (,$(TTN_APPKEY))
+  CFLAGS += -DTTN_APPKEY=\"$(TTN_APPKEY)\"
+endif
 
 # Comment this out to disable code in RIOT that does safety checking
 # which is not needed in a production environment but helps in the
