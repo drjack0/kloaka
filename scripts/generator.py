@@ -1,11 +1,13 @@
 #!/usr/bin/python3
 import random
 
-choices = [0, 50, 100]
+events_file = "events.txt"
 
 def main():
-    st = "flow " + str(random.choice(choices))
-    print(st)
+    with open(events_file, "r+") as fr:
+        vals = [int (x) for x in fr.read().split(" ")]
+        st = "flow " + " ".join(vals)
+        print(st)
     
 
 if __name__ == "__main__":
