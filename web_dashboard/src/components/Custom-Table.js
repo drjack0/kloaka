@@ -22,7 +22,8 @@ export function CustomTable(props) {
                     firstSensor: selected.problem_id.substring(0,2),
                     secondSensor: selected.problem_id.substring(2,4),
                     status: selected.problem_status,
-                    time: selected.problem_time
+                    time: selected.problem_time,
+                    description: selected.problem_description
                 })
             }
         }
@@ -40,6 +41,7 @@ export function CustomTable(props) {
                         <th>Sensors</th>
                         <th>Time</th>
                         <th>Status</th>
+                        <th>Notes</th>
                     </tr> 
                 </thead>
                 <tbody>
@@ -49,6 +51,7 @@ export function CustomTable(props) {
                                 <td>{data.firstSensor} - {data.secondSensor}</td>
                                 <td>{getDateTimestamp(data.time)}</td>
                                 <td>{data.status}</td>
+                                <td>{data.description}</td>
                         </tr>
                         )
                     })}
@@ -67,7 +70,8 @@ export function CustomTable(props) {
                     firstSensor: selected.problem_id.substring(0,2),
                     secondSensor: selected.problem_id.substring(2,4),
                     status: selected.problem_status,
-                    time: selected.problem_time
+                    time: selected.problem_time,
+                    description: selected.problem_description
                 })
             }
         }
@@ -85,6 +89,7 @@ export function CustomTable(props) {
                         <th>Sensors</th>
                         <th>Time</th>
                         <th>Status</th>
+                        <th>Notes</th>
                     </tr> 
                 </thead>
                 <tbody>
@@ -94,6 +99,7 @@ export function CustomTable(props) {
                                 <td>{data.firstSensor} - {data.secondSensor}</td>
                                 <td>{getDateTimestamp(data.time)}</td>
                                 <td>{data.status}</td>
+                                <td>{data.description}</td>
                         </tr>
                         )
                     })}

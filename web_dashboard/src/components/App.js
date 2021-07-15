@@ -355,8 +355,8 @@ class App extends Component {
                 </Container>
 
                 <Container className="card-value pt-4 text-x-large">
-                  <span className="text-large pr-1">$</span>
                   {this.state.lastMes}
+                  <span className="text-large pr-1">%</span>
                 </Container>
                 <Container className="card-value">
                   <span className="text-small pl-2 is-dark-text-light">date:{' '}{getDateTimestamp(this.state.lastMesDate)}</span>
@@ -376,8 +376,8 @@ class App extends Component {
                 </Container>
 
                 <Container className="card-value pt-4 text-x-large">
-                  <span className="text-large pr-1">$</span>
                   {this.state.avgMes}
+                  <span className="text-large pr-1">%</span>
                 </Container>
                 <Container className="card-value">
                   <span className="text-small pl-2 is-dark-text-light">#measurements:{' '}{this.state.numMes}</span>
@@ -397,8 +397,8 @@ class App extends Component {
                 </Container>
 
                 <Container className="card-value pt-4 text-x-large">
-                  <span className="text-large pr-1">$</span>
                   {this.state.maxMes}
+                  <span className="text-large pr-1">%</span>
                 </Container>
                 <Container className="card-value">
                   <span className="text-small pl-2 is-dark-text-light">date:{' '}{getDateTimestamp(this.state.maxMesDate)}</span>
@@ -418,8 +418,8 @@ class App extends Component {
                 </Container>
 
                 <Container className="card-value pt-4 text-x-large">
-                  <span className="text-large pr-1">$</span>
                   {this.state.minMes}
+                  <span className="text-large pr-1">%</span>
                 </Container>
                 <Container className="card-value">
                   <span className="text-small pl-2 is-dark-text-light">date:{' '}{getDateTimestamp(this.state.minMesDate)}</span>
@@ -652,7 +652,7 @@ class App extends Component {
                           <Popup>
                             {"DEVICE " + elem.id}
                             <br />
-                            {"Last flow value: " + elem.value}
+                            {"Last flow value: " + elem.value + "%"}
                             <br />
                             {"[measured at: " + elem.time + "]"}
                             {elem.error === "NO" ? "" : <hr />}

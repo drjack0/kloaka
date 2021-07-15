@@ -138,8 +138,8 @@ async function post_comparator(post_sensor, sensor){
                 }
             } else if(weather === "Drizzle" || weather === "Clear" || weather === "Clouds"){ // GOOD WEATHER
                 return {
-                    problem: "OBSTRUCTION",
-                    description: "Possible illegal taking of water"
+                    problem: "PROBLEM",
+                    description: "Probably leak or obstruction"
                 }
             }
         } else if (post_sensor_lastMes.filling < sensor_lastMes.filling){ // Flow Level UP
@@ -159,7 +159,7 @@ async function post_comparator(post_sensor, sensor){
             } else if(weather === "Drizzle" || weather === "Clear" || weather === "Clouds"){ // GOOD WEATHER
                 return {
                     problem: "OTHER",
-                    description: "Possible illegal entry of water"
+                    description: "Possible illegal substance dump"
                 }
             }
         } else {
