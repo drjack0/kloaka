@@ -187,7 +187,7 @@ We have two type of API Gateway endpoints:
 
 At the moment there aren't `POST`, `REMOVE` or `PUT` endpoints, so there is no type of protection on the API endpoints. Data are open to everyone who wants!
 
-![api-endpoints](../Images/technology/aws/API.png)
+![api-endpoints](../Images/technology/aws/API-new.png)
 
 - WEBSOCKET ENDPOINT: `wss://0o7o4txyea.execute-api.us-east-1.amazonaws.com/dev`
 - API REST ENDPOINT: `https://mo6thqx9bj.execute-api.us-east-1.amazonaws.com`
