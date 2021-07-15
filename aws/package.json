@@ -1,8 +1,9 @@
 {
   "dependencies": {
-    "aws-sdk": "^2.906.0",
     "axios": "^0.21.1",
-    "node-fetch": "^2.6.1",
     "uuidv4": "^6.2.8"
+  },
+  "devDependencies" : {
+    "aws-sdk": "^2.906.0"
   }
 }

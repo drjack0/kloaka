@@ -45,7 +45,7 @@ functions:
       - iot:
           name: "kloaka_organizer"
           description: "KLOAKA - Message organizer and formatter. This rule gets messages posted on 'from_device' topic and put them in the relative zone DynamoDB Table"
-          sql: "SELECT * FROM 'kloaka_from_device'"
+          sql: "SELECT end_device_ids.device_id as id, end_device_ids.dev_eui as dev_eui, uplink_message.frm_payload as filling FROM 'thethings/lorawan/kloaka-ttn/#'"
 
   getDeviceStat:
     handler: src/rest.getDeviceStat

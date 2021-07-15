@@ -41,21 +41,26 @@ exports.handler = function(event, context, callback) {
     console.log('Received measurement:', JSON.stringify(event, null, 2));
 
     console.log(event);
+    let buff = new Buffer.from(event.filling, 'base64');
+    console.log("BUFF, ", buff);
+    let received_data = buff.toString('ascii');
+    console.log("RECEIVED DATA POST BUFF, ", JSON.stringify(received_data));
     const time = Date.now();
     const mes_data = {
-            filling: event.filling,
+            filling: received_data,
             dt: time
         };
 
     var params = {
         TableName:table,
         Key: {
-            id: event.id
+            id: event.id.substring(6,8)
         },
-        UpdateExpression: "ADD measurements :mes SET last_value = :last_value, last_update = :last_update",
+        UpdateExpression: "ADD measurements :mes SET last_value = :last_value, last_update = :last_update, dev_eui = :dev_eui",
         ExpressionAttributeValues: {
             ":mes": dynamo.createSet([JSON.stringify(mes_data)]),
             ":last_update": time,
+            ":dev_eui": event.dev_eui,
             ":last_value": mes_data.filling
         }
     }
