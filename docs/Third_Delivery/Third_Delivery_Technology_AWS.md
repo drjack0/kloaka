@@ -4,7 +4,7 @@ In this section are explained all the steps made for developing the Kloaka's bac
 ![network-overview-second-delivery](../Images/technology/aws/network_overview_second.png)
 
 ## Main model
-![main-model](../Images/technology/aws/Main-3rd.png)
+![main-model](../Images/technology/aws/Main-new.png)
 Main AWS services used are:
 - AWS Lambda: Serverless functions
 - DynamoDB: NoSQL Database with stream integration
@@ -130,7 +130,7 @@ The following table resumes the results:
 | 100            | 100              | No weather data | OK           | NO                              |
 | 100            | 100              | Good Weather    | OK           | NO                              | 
 | 100            | 100              | Bad Weather     | OK           | NO                              |
-| 100            | 0                | No weather data | OBSTRUTION   | NO_WEATHER_DATA                 |
+| 100            | 0                | No weather data | OBSTRUCTION   | NO_WEATHER_DATA                 |
 | 100            | 0                | Good Weather    | PROBLEM      | Probably leak or obstruction    |
 | 100            | 0                | Bad Weather     | OBSTRUCTION  | Probably due to bad weather     |
 | 0              | 100              | No weather data | PROBLEM      | NO_WEATHER_DATA                 |
