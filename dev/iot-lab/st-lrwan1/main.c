@@ -31,6 +31,16 @@ static semtech_loramac_t loramac;  /* The loramac stack descriptor */
 #define TTN_DEV_ID ("01")
 #endif
 
+/**
+#ifndef TTN_DEVEUI
+#define TTN_DEVEUI ("9876543210987656")
+#endif
+
+#ifndef TTN_APPKEY
+#define TTN_APPKEY ("6D20BD08F0F105BAD6875E2083313CDB")
+#endif
+*/
+
 static hts221_t hts221; /* The HTS221 device descriptor */
 
 static const uint8_t deveui[LORAMAC_DEVEUI_LEN] = { 0x98, 0x76, 0x54, 0x32, 0x10, 0x98, 0x76, 0x56 };
@@ -150,6 +160,61 @@ static int cmd_test(int argc, char **argv){
     return 0;
 }
 
+/**
+#define _STRINGIZE(x) #x
+#define STRINGIZE(x) _STRINGIZE(x)
+
+static int cmd_test2(int argc, char **argv){
+    (void)argc;
+    (void)argv;
+
+    puts(TTN_DEVEUI);
+    puts(TTN_APPKEY);
+
+    char *tst = STRINGIZE(TTN_DEVEUI);
+    tst++;
+
+    char res[20] = {0};
+    strncpy(res, tst, 16); 
+    res[16] = '\0';
+    printf("%s\n", res);
+
+    char* pos = res;
+
+    printf("%u\n", LORAMAC_DEVEUI_LEN);
+    unsigned char val[50];
+    //unsigned char val2[12];
+
+    // const char *pos = TTN_DEVEUI;
+    // const char *pos2 = TTN_APPKEY;
+
+
+    for (size_t count = 0; count < sizeof val/sizeof *val; count++) {
+        printf("%s (%d)\n", pos, count);
+        sscanf(pos, "%2hhx", &val[count]);
+        pos += 2;
+    }    
+
+
+
+    // for (size_t count = 0; count < sizeof val2/sizeof *val2; count++) {
+    //     sscanf(pos2, "%2hhx", &val2[count]);
+    //     pos2 += 2;
+    // }    
+
+    puts("DONE");
+
+    for(size_t count = 0; count < sizeof val/sizeof *val; count++)
+        printf("%02x", val[count]);
+    printf("\n");
+
+    // for(size_t count = 0; count < sizeof val2/sizeof *val2; count++)
+    //     printf("%02x", val2[count]);
+    // printf("\n");
+
+    return 0;
+}
+*/
 
 static int cmd_flow(int argc, char **argv){
     int schedule[150];
@@ -174,22 +239,6 @@ static int cmd_flow(int argc, char **argv){
 }
 
 int lora_init(void) {
-        /* initialize the HTS221 sensor */
-    if (hts221_init(&hts221, &hts221_params[0]) != HTS221_OK) {
-        puts("Sensor initialization failed");
-        return 1;
-    }
-
-    if (hts221_power_on(&hts221) != HTS221_OK) {
-        puts("Sensor initialization power on failed");
-        return 1;
-    }
-
-    if (hts221_set_rate(&hts221, hts221.p.rate) != HTS221_OK) {
-        puts("Sensor continuous mode setup failed");
-        return 1;
-    }
-
     /* initialize the loramac stack */
     semtech_loramac_init(&loramac);
     
@@ -214,6 +263,7 @@ int lora_init(void) {
 static const shell_command_t shell_commands[] = {
     { "flow", "set the device's current flow", cmd_flow },
     { "test", "testcmd", cmd_test },
+    //{ "test2", "testcmd", cmd_test2 },
 
     { NULL, NULL, NULL }};
 
@@ -221,6 +271,7 @@ int main(void){
     lora_init();
     thread_create(_recv_stack, sizeof(_recv_stack),
                THREAD_PRIORITY_MAIN - 1, 0, _recv, NULL, "recv thread");    
+
     /* start shell */
     char line_buf[SHELL_DEFAULT_BUFSIZE];
     shell_run(shell_commands, line_buf, SHELL_DEFAULT_BUFSIZE);
