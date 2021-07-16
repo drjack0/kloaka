@@ -32,4 +32,4 @@ A sewer monitoring system whose objective is to monitor the quality of sewage wa
 * [Future Plans](https://youtu.be/NFSLwjiqagY)
 ### 3rd delivery
 * [Presentation](https://Replace_ME.iot)
-* [Demo](https://Replace_ME.iot)
+* [Demo](https://youtu.be/zZb40XoGevM)
