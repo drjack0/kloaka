@@ -31,5 +31,5 @@ A sewer monitoring system whose objective is to monitor the quality of sewage wa
 * [Evaluation](https://youtu.be/WKKEutESwt0)
 * [Future Plans](https://youtu.be/NFSLwjiqagY)
 ### 3rd delivery
-* [Presentation](https://Replace_ME.iot)
+* [Presentation](https://www.youtube.com/watch?v=Gh1JWctGEPk)
 * [Demo](https://youtu.be/zZb40XoGevM)
