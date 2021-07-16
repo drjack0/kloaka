@@ -1,6 +1,8 @@
 # Technology
 This document provides technical details about kloaka.
 
+Scroll down to read the previous versions of this document.
+
 ## \[16/07/2021] V3: Final Delivery
 ## Device
 ### Working principle
