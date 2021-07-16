@@ -19,10 +19,14 @@ We placed the sensord directly on the metal tubing holding the sensors with elec
 ![img_sensor](/docs/Images/technology/img_sensor.jpg)
 
 ![img_setup](/docs/Images/technology/device.png)
+
 To choose how to handle data we we have built a test setup composed by our sersor and a relay connected to a pump controlled by the nucleo. (See input data evaluation)
 
 Every time the device enters in the measuring phase it takes 10 samples.
+
 As the device will be battery powered, as we assume that electrical power isnt present in white water sewer, to maximize bttery life we need reduce duty cycle choosing to transmit every our or so, the device in fact will trasmit data an intervals while sensing multiple times during this interval.
+
 To futher reduce this consuption we used RIOT-OS power management module to reduce energy consumption putting the device in a deep sleep mode during time beetween measures.
-Toredeuce data transmission data obtained from each sensing phase is reduced to a change of state that before data transmission will be mapped to a value between 0 and 100, then sended to the cloud.
+
+To redeuce data transmission data obtained from each sensing phase is reduced to a change of state that before data transmission will be mapped to a value between 0 and 100, then sended to the cloud.
 
