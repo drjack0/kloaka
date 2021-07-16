@@ -1,6 +1,63 @@
 # Evaluation
 This document provides information about the "evaluation" branch of the project
 
+## [16/07/2021] v3: Final Delivery
+### Input data evaluation
+
+
+The board runs on a modified version of the system that collects and sends raw sensor data over mqtt where is consumed by a python script that stores the values.
+We decided to toggle the interreading time of the ultrasonic sensor.
+The value are labeled in four different states: OFF, OFF2ON, ON, ON2OFF.
+We made 10 measures for each state and repeated 2 experiments, looking at data we see that results obtained changing the interreading time of the ultrasonic sensor are more or less the same, the only difference we found is that for small times we have more outlier in the measure, we so choose to stick with 300ms. 
+
+![dia_sensor](/docs/Images/technology/test_setup_data.png)
+
+We make the median and standard deviation of our sampled data and if a sampled value dows not fall into mean+-std_dev we detect a change of state, we reset the mean and the stddev, and repeat the process.
+We calculate the mean as
+```
+M1=x1 
+S1=0
+Mk=Mk−1+(xk−Mk−1)/k
+as well the standard deviation as
+Sk=Sk−1+(xk−M_k−1)∗(xk−Mk)
+```
+### Output data evaluation
+To evaluate the performace of our sensor used our test setup removing the relay and actionating the pumb by hand.
+We than have noticed that data from the sensor was different from data collected during experiments thus our developed algorithm was ineffective. In fact data readed from the sensor in se is static while data retrived whitin the data collecting infrastructure varies as shown.
+
+### Speed
+A sleeping phase (interval between sensig phases) lasts for 20 minutes, the sensing phase lasts about 1 minute and its repeated and the trasmitting operation requires about 10 seconds each hour thus we have that data is sended by each device with a duty cycle of 62,73 minutes.
+
+### Energy
+We will assume that LoRa transmission use about 10mA (as we were unable to get real world data), in sleeping phase we measured 1mA and when we wake up our consuption is 7.5mA.
+We measured the consuptions via a voltage meter hoked up to a 1 ohm resistor though the IDD pins on the board.
+We get the consumption of our device multiplyng the consumption for the different states and the period of eache state and divide by the sum of periods.
+```
+ (20*3*1+0.76*3*7.5+0.16*30)
+---------------------------- =1.3mA
+     (20*3+0.76*3+0.16)
+```
+![dia_sensor](/docs/Images/technology/multimeter_sleep.png)
+### Capacity
+
+#### Availability
+The device availability on a battery of 10.000 mAh and mean consumption of 1.3mA about 10 month and seems a good compromise for not using an RTC and don't put the device in the lowest level of sleep.
+
+For the evaluation of the availability of the cloud infrastructure we weded a native firmware to use alongside IoT-LAB nodes both with a hell command “flow <value_1 ... value_n>” to send crafted flow values via different types of networks with wich 
+we performed checks of the connectivity between our simulated network infrastructure and the cloud one. 
+
+#### Duty cycle
+The adhering to duty cycle restrictions we used the [following calculator](https://www.loratools.nl/#/airtime).
+The decision of the tx duty cycle is based on battery consumption and data frequency needings, howewer our tx rate respects Lora standard and TTN policies.
+
+| SF |     TOA       |            Duty cycle           |
+|:--:|:-------------:|:-------------------------------:|
+|  7 |   102.66 ms   | One message every 00:10 (mm:ss) |
+| 12 |  2,465.79 ms  | One message every 04:07 (mm:ss) |
+
+
+
+
 ## \[20/05/2021] V2: Group Project MVP Presentation
 
 ### Cloud evaluation
